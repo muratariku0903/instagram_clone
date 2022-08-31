@@ -1,7 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_state_notifier/flutter_state_notifier.dart';
+import 'package:instagram/domain/user/user_repository.dart';
+import 'package:instagram/domain/user/user_service.dart';
+import 'package:instagram/pages/signin/states/signin_state.dart';
+import 'package:instagram/pages/signin/signin_notifier.dart';
+import 'package:provider/provider.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({Key? key}) : super(key: key);
+
+  static Widget wrapped() {
+    return MultiProvider(
+      providers: [
+        StateNotifierProvider<SigninNotifier, SigninState>(
+          create: (context) => SigninNotifier(
+            repository: context.read<UserRepository>(),
+            service: context.read<UserService>(),
+            
+          ),
+        ),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +79,8 @@ class SignInPage extends StatelessWidget {
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           formKey.currentState!.save();
+
+                          // final status =
                         }
                       },
                     ),
