@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
+import 'package:instagram/domain/user/models/user.dart';
 import 'package:instagram/domain/user/user_repository.dart';
 import 'package:instagram/domain/user/user_service.dart';
+import 'package:instagram/pages/app/app_notifier.dart';
 import 'package:instagram/pages/signin/states/signin_state.dart';
 import 'package:instagram/pages/signin/signin_notifier.dart';
-import 'package:provider/provider.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -16,16 +18,19 @@ class SignInPage extends StatelessWidget {
           create: (context) => SigninNotifier(
             repository: context.read<UserRepository>(),
             service: context.read<UserService>(),
-            
+            appNotifier: context.read<AppNotifier>(),
           ),
+          child: const SignInPage(),
         ),
       ],
+      child: const SignInPage(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
+    final notifier = context.read<SigninNotifier>();
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -69,6 +74,7 @@ class SignInPage extends StatelessWidget {
                     TextFormField(
                       decoration: const InputDecoration(hintText: 'Password'),
                       obscureText: true,
+                      controller: notifier.passwordController,
                       validator: (value) => value!.length < 6
                           ? 'Please input valid length password'
                           : null,
@@ -76,11 +82,24 @@ class SignInPage extends StatelessWidget {
                     const SizedBox(height: 28),
                     ElevatedButton(
                       child: const Text('Sign Up'),
-                      onPressed: () {
+                      onPressed: () async {
                         if (formKey.currentState!.validate()) {
                           formKey.currentState!.save();
 
-                          // final status =
+                          final status = await notifier.addUser(
+                            notifier.nameController.text,
+                            notifier.emailController.text,
+                            notifier.passwordController.text,
+                          );
+
+                          if (status == UserStatus.success) {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => Text(''),
+                              ),
+                            );
+                          }
                         }
                       },
                     ),

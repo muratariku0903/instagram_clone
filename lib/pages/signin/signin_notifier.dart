@@ -6,13 +6,18 @@ import 'package:instagram/domain/user/models/user.dart';
 import 'package:instagram/domain/user/user_repository.dart';
 import 'package:instagram/domain/user/user_service.dart';
 import 'package:instagram/pages/signin/states/signin_state.dart';
+import 'package:instagram/pages/app/app_notifier.dart';
 
 class SigninNotifier extends StateNotifier<SigninState> {
-  SigninNotifier({required this.repository, required this.service})
-      : super(const SigninState());
+  SigninNotifier({
+    required this.repository,
+    required this.service,
+    required this.appNotifier,
+  }) : super(const SigninState());
 
   final UserService service;
   final UserRepository repository;
+  final AppNotifier appNotifier;
 
   late final nameController = TextEditingController();
   late final emailController = TextEditingController();
