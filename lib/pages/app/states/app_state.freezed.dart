@@ -85,7 +85,7 @@ class __$$_AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AppState with DiagnosticableTreeMixin implements _AppState {
+class _$_AppState implements _AppState {
   const _$_AppState({this.isLoading = false});
 
   @override
@@ -93,16 +93,8 @@ class _$_AppState with DiagnosticableTreeMixin implements _AppState {
   final bool isLoading;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'AppState(isLoading: $isLoading)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'AppState'))
-      ..add(DiagnosticsProperty('isLoading', isLoading));
   }
 
   @override

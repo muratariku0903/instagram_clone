@@ -108,7 +108,7 @@ class __$$_UserStateCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UserState with DiagnosticableTreeMixin implements _UserState {
+class _$_UserState implements _UserState {
   const _$_UserState(
       {this.userStatus = UserStatus.waiting, this.user = const User()});
 
@@ -120,17 +120,8 @@ class _$_UserState with DiagnosticableTreeMixin implements _UserState {
   final User user;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'UserState(userStatus: $userStatus, user: $user)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'UserState'))
-      ..add(DiagnosticsProperty('userStatus', userStatus))
-      ..add(DiagnosticsProperty('user', user));
   }
 
   @override

@@ -98,7 +98,7 @@ class __$$_SigninStateCopyWithImpl<$Res> extends _$SigninStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SigninState with DiagnosticableTreeMixin implements _SigninState {
+class _$_SigninState implements _SigninState {
   const _$_SigninState({this.userImage = '', this.userImageFile});
 
   @override
@@ -108,17 +108,8 @@ class _$_SigninState with DiagnosticableTreeMixin implements _SigninState {
   final File? userImageFile;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'SigninState(userImage: $userImage, userImageFile: $userImageFile)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'SigninState'))
-      ..add(DiagnosticsProperty('userImage', userImage))
-      ..add(DiagnosticsProperty('userImageFile', userImageFile));
   }
 
   @override

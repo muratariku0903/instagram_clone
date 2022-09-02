@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:instagram/pages/app/app_notifier.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:instagram/domain/user/user_repository.dart';
 import 'package:instagram/domain/user/user_service.dart';
+import 'package:instagram/pages/app/app_notifier.dart';
 import 'package:instagram/pages/app/user_notifier.dart';
+import 'package:instagram/pages/home/home_page.dart';
 import 'package:instagram/pages/signin/states/signin_state.dart';
 import 'package:instagram/pages/signin/signin_notifier.dart';
 import 'package:instagram/widgets/profile_image.dart';
@@ -29,7 +30,7 @@ class EditProfilePage extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, [bool mounted = true]) {
     final state = context.select((SigninState value) => value);
     final notifier = context.read<SigninNotifier>();
     final userNotifier = context.read<UserNotifier>();
@@ -63,12 +64,36 @@ class EditProfilePage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  TextFormField(),
+                  TextFormField(
+                    controller: notifier.bioController,
+                    decoration: const InputDecoration(hintText: 'Bio'),
+                    validator: (value) =>
+                        value!.trim().isEmpty ? 'Bio cannot be empty.' : null,
+                  ),
                   const SizedBox(height: 28.0),
                   ElevatedButton(
-                    onPressed: (() {}),
+                    style: ElevatedButton.styleFrom(
+                      elevation: 1.0,
+                      foregroundColor: Theme.of(context).primaryColor,
+                      textStyle: const TextStyle(color: Colors.white),
+                    ),
+                    onPressed: () async {
+                      await notifier.addUserInfo(
+                        state.userImageFile,
+                        notifier.bioController.text,
+                      );
+
+                      if (!mounted) return;
+                      
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomePage.wrapped(),
+                        ),
+                      );
+                    },
                     child: const Text(
-                      'hello',
+                      'Let\' get started!',
                       style: TextStyle(
                         color: Colors.white,
                       ),
