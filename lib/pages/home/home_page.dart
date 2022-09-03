@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:instagram/domain/post/models/post_list.dart';
+import 'package:instagram/domain/post/post_repository.dart';
 import 'package:instagram/pages/app/states/user_state.dart';
 import 'package:instagram/pages/home/states/home_state.dart';
+import 'package:instagram/pages/app/app_notifier.dart';
+import 'package:instagram/pages/app/user_notifier.dart';
 import 'package:instagram/pages/home/home_notifier.dart';
 import 'package:instagram/common/constants/theme.dart';
 
@@ -13,7 +16,14 @@ class HomePage extends StatelessWidget {
   static Widget wrapped() {
     return MultiProvider(
       providers: [
-        // StateNotifierProvider<HomeNotifer>(create: ),
+        StateNotifierProvider<HomeNotifier, HomeState>(
+          create: (context) => HomeNotifier(
+            postRepository: context.read<PostRepository>(),
+            appNotifier: context.read<AppNotifier>(),
+            userNotifier: context.read<UserNotifier>(),
+          ),
+          child: const HomePage(),
+        ),
       ],
       child: const HomePage(),
     );
