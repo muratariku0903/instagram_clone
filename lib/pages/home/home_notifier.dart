@@ -1,12 +1,16 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:state_notifier/state_notifier.dart';
+import 'package:uuid/uuid.dart';
+import 'package:instagram/domain/user/models/user.dart';
 import 'package:instagram/domain/post/post_repository.dart';
 import 'package:instagram/pages/app/app_notifier.dart';
 import 'package:instagram/pages/app/user_notifier.dart';
 import 'package:instagram/pages/home/states/home_state.dart';
+import 'package:instagram/widgets/dialog/error_dialog.dart';
 import 'package:instagram/common/helper/helpers.dart';
-import 'package:uuid/uuid.dart';
 
 class HomeNotifier extends StateNotifier<HomeState> {
   HomeNotifier({
@@ -34,7 +38,36 @@ class HomeNotifier extends StateNotifier<HomeState> {
       );
 
       if (imagePathResult.isError) {
+        if (!mounted) return;
         final context = appNotifier.navigatorKey.currentContext!;
+        const ErrorDialog('画像が送信できませんでした。インターネットが接続されているかご確認ください。')
+            .show(context);
+      }
+
+      final imagePath = imagePathResult.asValue!.value;
+
+      state = state.copyWith(postImage: imagePath);
+
+      try {
+        await postRepository.addPost(
+            dateId: dateId,
+            postId: postId,
+            content: messageController.text,
+            postImage: state.postImage,
+            user: user);
+      } catch (e) {
+        print(e);
+      }
+    }
+
+    Future<void> setImageFromGallery() async {
+      final pickedFile = await ImagePicker().pickImage(
+        source: ImageSource.gallery,
+      );
+
+      if (pickedFile != null) {
+        state = state.copyWith(postImageFile: File(pickedFile.path));
+        print(state.postImageFile);
       }
     }
   }
