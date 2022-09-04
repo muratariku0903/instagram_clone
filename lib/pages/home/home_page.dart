@@ -4,10 +4,11 @@ import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:instagram/domain/post/models/post_list.dart';
 import 'package:instagram/domain/post/post_repository.dart';
 import 'package:instagram/pages/app/states/user_state.dart';
-import 'package:instagram/pages/home/states/home_state.dart';
 import 'package:instagram/pages/app/app_notifier.dart';
 import 'package:instagram/pages/app/user_notifier.dart';
+import 'package:instagram/pages/home/states/home_state.dart';
 import 'package:instagram/pages/home/home_notifier.dart';
+import 'package:instagram/pages/post/post_page.dart';
 import 'package:instagram/common/constants/theme.dart';
 
 class HomePage extends StatelessWidget {

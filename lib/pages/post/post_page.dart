@@ -17,6 +17,7 @@ class PostPage extends StatelessWidget {
   final HomeState state;
   final User user;
 
+  @override
   Widget build(BuildContext context, [bool mounted = true]) {
     return Scaffold(
       appBar: AppBar(
