@@ -59,16 +59,16 @@ class HomeNotifier extends StateNotifier<HomeState> {
         print(e);
       }
     }
+  }
 
-    Future<void> setImageFromGallery() async {
-      final pickedFile = await ImagePicker().pickImage(
-        source: ImageSource.gallery,
-      );
+  Future<void> setImageFromGallery() async {
+    final pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+    );
 
-      if (pickedFile != null) {
-        state = state.copyWith(postImageFile: File(pickedFile.path));
-        print(state.postImageFile);
-      }
+    if (pickedFile != null) {
+      state = state.copyWith(postImageFile: File(pickedFile.path));
+      print(state.postImageFile);
     }
   }
 }
