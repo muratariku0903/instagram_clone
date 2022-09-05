@@ -9,6 +9,7 @@ import 'package:instagram/pages/app/user_notifier.dart';
 import 'package:instagram/pages/home/states/home_state.dart';
 import 'package:instagram/pages/home/home_notifier.dart';
 import 'package:instagram/pages/post/post_page.dart';
+import 'package:instagram/pages/home/widgets/post_item.dart';
 import 'package:instagram/common/constants/theme.dart';
 
 class HomePage extends StatelessWidget {
@@ -53,8 +54,7 @@ class HomePage extends StatelessWidget {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (_) {
-                  return Container();
-                  // return PostPage(notifier: notifier, state: state, user: user);
+                  return PostPage(notifier: notifier, state: state, user: user);
                 },
               ),
             );
@@ -65,7 +65,10 @@ class HomePage extends StatelessWidget {
       body: ListView.builder(
         itemCount: postList.length,
         itemBuilder: (context, idx) {
-          return Container();
+          return PostItem(
+            post: postList[idx],
+            index: idx,
+          );
         },
       ),
     );
