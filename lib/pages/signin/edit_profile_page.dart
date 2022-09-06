@@ -13,6 +13,7 @@ import 'package:instagram/widgets/profile_image.dart';
 class EditProfilePage extends StatelessWidget {
   const EditProfilePage({Key? key}) : super(key: key);
 
+  // Reactで言うContainerみたいな感じかな？
   static Widget wrapped() {
     return MultiProvider(
       providers: [

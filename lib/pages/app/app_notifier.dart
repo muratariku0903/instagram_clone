@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:state_notifier/state_notifier.dart';
-import 'package:instagram/pages/app/states/user_state.dart';
+import 'package:instagram/pages/app/states/app_state.dart';
 
-class AppNotifier extends StateNotifier<UserState> {
-  AppNotifier() : super(const UserState());
+class AppNotifier extends StateNotifier<AppState> {
+  AppNotifier() : super(const AppState());
 
   final navigatorKey = GlobalKey<NavigatorState>();
 

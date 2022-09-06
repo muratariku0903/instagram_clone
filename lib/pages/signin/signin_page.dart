@@ -7,6 +7,7 @@ import 'package:instagram/domain/user/user_service.dart';
 import 'package:instagram/pages/app/app_notifier.dart';
 import 'package:instagram/pages/signin/states/signin_state.dart';
 import 'package:instagram/pages/signin/signin_notifier.dart';
+import 'package:instagram/pages/signin/edit_profile_page.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class SignInPage extends StatelessWidget {
     return MultiProvider(
       providers: [
         StateNotifierProvider<SigninNotifier, SigninState>(
-          create: (context) => SigninNotifier(
+          create: (BuildContext context) => SigninNotifier(
             repository: context.read<UserRepository>(),
             service: context.read<UserService>(),
             appNotifier: context.read<AppNotifier>(),
@@ -28,7 +29,7 @@ class SignInPage extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, [bool mounted = true]) {
     final formKey = GlobalKey<FormState>();
     final notifier = context.read<SigninNotifier>();
 
@@ -92,11 +93,13 @@ class SignInPage extends StatelessWidget {
                             notifier.passwordController.text,
                           );
 
+                          if (!mounted) return;
+
                           if (status == UserStatus.success) {
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (_) => Text(''),
+                                builder: (_) => EditProfilePage.wrapped(),
                               ),
                             );
                           }
