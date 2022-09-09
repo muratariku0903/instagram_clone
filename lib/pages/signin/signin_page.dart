@@ -59,6 +59,7 @@ class SignInPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 12),
                     TextFormField(
+                      controller: notifier.nameController,
                       decoration: const InputDecoration(hintText: 'username'),
                       validator: (value) => value!.trim().isEmpty
                           ? 'Please input valid username'
@@ -66,6 +67,7 @@ class SignInPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
+                      controller: notifier.emailController,
                       decoration: const InputDecoration(hintText: 'Email'),
                       validator: (value) => value!.contains('@')
                           ? null
