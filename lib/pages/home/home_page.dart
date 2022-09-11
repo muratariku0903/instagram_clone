@@ -10,6 +10,7 @@ import 'package:instagram/pages/home/states/home_state.dart';
 import 'package:instagram/pages/home/home_notifier.dart';
 import 'package:instagram/pages/post/post_page.dart';
 import 'package:instagram/pages/home/widgets/post_item.dart';
+import 'package:instagram/widgets/appbar/appbar.dart';
 import 'package:instagram/common/constants/theme.dart';
 
 class HomePage extends StatelessWidget {
@@ -39,17 +40,10 @@ class HomePage extends StatelessWidget {
     final state = context.select((HomeState value) => value);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Instagram",
-          style: TextStyleTheme.textStyleBold,
-          textAlign: TextAlign.left,
-        ),
-        leading: IconButton(
-          icon: const Icon(
-            Icons.add_box_outlined,
-            color: Colors.black,
-          ),
+      appBar: CustomAppBar(
+        title: "Instagram",
+        iconButton: IconButton(
+          icon: const Icon(Icons.add_box_outlined, color: Colors.black),
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
@@ -60,7 +54,6 @@ class HomePage extends StatelessWidget {
             );
           },
         ),
-        backgroundColor: Colors.white,
       ),
       body: ListView.builder(
         itemCount: postList.length,

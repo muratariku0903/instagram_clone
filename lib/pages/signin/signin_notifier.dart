@@ -46,7 +46,6 @@ class SigninNotifier extends StateNotifier<SigninState> {
     final result = await service.signUpByEmailAndPassword(
         email: email, password: password);
     if (result.isError) {
-      print('error!');
       return UserStatus.error;
     }
 

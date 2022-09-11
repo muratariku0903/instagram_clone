@@ -9,6 +9,7 @@ import 'package:instagram/pages/home/home_page.dart';
 import 'package:instagram/pages/signin/states/signin_state.dart';
 import 'package:instagram/pages/signin/signin_notifier.dart';
 import 'package:instagram/widgets/profile_image.dart';
+import 'package:instagram/widgets/appbar/appbar.dart';
 
 class EditProfilePage extends StatelessWidget {
   const EditProfilePage({Key? key}) : super(key: key);
@@ -37,14 +38,9 @@ class EditProfilePage extends StatelessWidget {
     final userNotifier = context.read<UserNotifier>();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'edit profile',
-          style: TextStyle(color: Colors.black),
-        ),
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        elevation: 1,
-        leading: IconButton(
+      appBar: CustomAppBar(
+        title: 'edit profile',
+        iconButton: IconButton(
           onPressed: () => Navigator.of(context).pop(),
           icon: const Icon(Icons.arrow_back, color: Colors.black),
         ),
@@ -85,7 +81,7 @@ class EditProfilePage extends StatelessWidget {
                       );
 
                       if (!mounted) return;
-                      
+
                       Navigator.push(
                         context,
                         MaterialPageRoute(
