@@ -3,7 +3,8 @@ import 'package:instagram/domain/user/models/user.dart';
 import 'package:instagram/pages/home/states/home_state.dart';
 import 'package:instagram/pages/home/home_notifier.dart';
 import 'package:instagram/widgets/text_field/post_text_field.dart';
-import 'package:instagram/common/constants/theme.dart';
+import 'package:instagram/widgets/appbar/appbar.dart';
+// import 'package:instagram/common/constants/theme.dart';
 
 class PostPage extends StatelessWidget {
   const PostPage({
@@ -20,22 +21,12 @@ class PostPage extends StatelessWidget {
   @override
   Widget build(BuildContext context, [bool mounted = true]) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Instagram',
-          style: TextStyleTheme.textStyleBold,
-          textAlign: TextAlign.left,
+      appBar: CustomAppBar(
+        title: 'Instagram',
+        iconButton: IconButton(
+          icon: const Icon(Icons.close, color: Colors.black),
+          onPressed: () => Navigator.of(context).pop(),
         ),
-        leading: IconButton(
-          icon: const Icon(
-            Icons.close,
-            color: Colors.black,
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        backgroundColor: Colors.white,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8),

@@ -19,8 +19,8 @@ class PostRepository {
     try {
       snapshot = await _storage.ref(path).putFile(file);
     } on Exception catch (e) {
-      return Result.error(PostError.error);
       print(e);
+      return Result.error(PostError.error);
     }
 
     return Result.value(await snapshot.ref.getDownloadURL());
