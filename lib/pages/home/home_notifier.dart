@@ -67,7 +67,6 @@ class HomeNotifier extends StateNotifier<HomeState> {
 
     if (pickedFile != null) {
       state = state.copyWith(postImageFile: File(pickedFile.path));
-      print(state.postImageFile);
     }
   }
 }

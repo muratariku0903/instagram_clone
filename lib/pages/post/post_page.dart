@@ -4,7 +4,6 @@ import 'package:instagram/pages/home/states/home_state.dart';
 import 'package:instagram/pages/home/home_notifier.dart';
 import 'package:instagram/widgets/text_field/post_text_field.dart';
 import 'package:instagram/widgets/appbar/appbar.dart';
-// import 'package:instagram/common/constants/theme.dart';
 
 class PostPage extends StatelessWidget {
   const PostPage({

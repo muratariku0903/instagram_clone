@@ -59,7 +59,6 @@ class _ConfigPageState extends State<ConfigPage> {
     final userState = context.read<UserState>();
     if (userState.userStatus == UserStatus.email) {
       await userNotifier.fetchUser();
-      // print(context.read<UserState>().user);
     }
   }
 

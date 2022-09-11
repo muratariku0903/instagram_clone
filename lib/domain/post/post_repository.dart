@@ -18,7 +18,9 @@ class PostRepository {
 
     try {
       snapshot = await _storage.ref(path).putFile(file);
+      print('Added image to storage.');
     } on Exception catch (e) {
+      print('Fail adding image to storage.');
       print(e);
       return Result.error(PostError.error);
     }
