@@ -11,7 +11,7 @@ import 'package:instagram/pages/home/home_notifier.dart';
 import 'package:instagram/pages/post/post_page.dart';
 import 'package:instagram/pages/home/widgets/post_item.dart';
 import 'package:instagram/widgets/appbar/appbar.dart';
-import 'package:instagram/common/constants/theme.dart';
+import 'package:instagram/common/helper/helpers.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
     final postList = context.watch<PostList>().postList;
     final user = context.select((UserState value) => value).user;
     final state = context.select((HomeState value) => value);
-    print(postList);
+    dump(postList);
 
     return Scaffold(
       appBar: CustomAppBar(

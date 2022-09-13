@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:state_notifier/state_notifier.dart';
 import 'package:uuid/uuid.dart';
@@ -10,6 +9,7 @@ import 'package:instagram/pages/app/app_notifier.dart';
 import 'package:instagram/pages/app/user_notifier.dart';
 import 'package:instagram/pages/home/states/home_state.dart';
 import 'package:instagram/widgets/dialog/error_dialog.dart';
+import 'package:instagram/common/helper/helpers.dart';
 import 'package:instagram/common/helper/helpers.dart';
 
 class HomeNotifier extends StateNotifier<HomeState> {
@@ -62,6 +62,7 @@ class HomeNotifier extends StateNotifier<HomeState> {
   }
 
   Future<void> setImageFromGallery() async {
+    dump('hello');
     final pickedFile =
         await ImagePicker().pickImage(source: ImageSource.gallery);
 

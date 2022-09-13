@@ -1,10 +1,10 @@
-import 'dart:io';
 import 'package:instagram/domain/user/models/user.dart';
 import 'package:state_notifier/state_notifier.dart';
 import 'package:instagram/domain/user/user_service.dart';
 import 'package:instagram/domain/user/user_repository.dart';
 import 'package:instagram/pages/app/states/user_state.dart';
 import 'package:instagram/pages/app/app_notifier.dart';
+import 'package:instagram/common/helper/helpers.dart';
 
 class UserNotifier extends StateNotifier<UserState> {
   UserNotifier({
@@ -26,7 +26,7 @@ class UserNotifier extends StateNotifier<UserState> {
     }
 
     state = state.copyWith(userStatus: UserStatus.email);
-    print(result);
+    dump(result);
   }
 
   Future<void> fetchUser() async {
@@ -46,6 +46,6 @@ class UserNotifier extends StateNotifier<UserState> {
     final user = userResult.asValue!.value;
 
     state = state.copyWith(user: user);
-    print(state.user);
+    dump(state);
   }
 }
