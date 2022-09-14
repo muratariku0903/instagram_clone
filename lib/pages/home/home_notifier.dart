@@ -10,7 +10,6 @@ import 'package:instagram/pages/app/user_notifier.dart';
 import 'package:instagram/pages/home/states/home_state.dart';
 import 'package:instagram/widgets/dialog/error_dialog.dart';
 import 'package:instagram/common/helper/helpers.dart';
-import 'package:instagram/common/helper/helpers.dart';
 
 class HomeNotifier extends StateNotifier<HomeState> {
   HomeNotifier({
@@ -56,13 +55,13 @@ class HomeNotifier extends StateNotifier<HomeState> {
             postImage: state.postImage,
             user: user);
       } catch (e) {
-        print(e);
+        dump(e);
       }
     }
   }
 
   Future<void> setImageFromGallery() async {
-    dump('hello');
+    dump('Try get image from gallery');
     final pickedFile =
         await ImagePicker().pickImage(source: ImageSource.gallery);
 

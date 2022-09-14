@@ -43,7 +43,7 @@ class PostRepository {
         'postImage': postImage,
         'user': {
           'name': user.name,
-          'uid': user.userId,
+          'uid': user.userId, // userIdじゃね？
           'userImage': user.userImage,
         },
         'createAt': FieldValue.serverTimestamp(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram/common/helper/helpers.dart';
 import 'package:instagram/domain/post/models/post.dart';
 import 'package:instagram/common/constants/theme.dart';
 
@@ -14,6 +15,8 @@ class PostItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    dump(post);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -26,7 +29,9 @@ class PostItem extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.only(right: 15),
                     child: CircleAvatar(
-                      backgroundImage: NetworkImage(post.user!.userImage),
+                      backgroundImage: post.user!.userImage != ''
+                          ? NetworkImage(post.user!.userImage)
+                          : null,
                     ),
                   ),
                   Text(post.user!.message),
@@ -47,7 +52,7 @@ class PostItem extends StatelessWidget {
           constraints: const BoxConstraints(maxHeight: 282),
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: NetworkImage(post.user!.userImage),
+              image: NetworkImage(post.postImage),
             ),
           ),
         ),

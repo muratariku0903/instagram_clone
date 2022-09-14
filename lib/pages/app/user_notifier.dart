@@ -26,7 +26,6 @@ class UserNotifier extends StateNotifier<UserState> {
     }
 
     state = state.copyWith(userStatus: UserStatus.email);
-    dump(result);
   }
 
   Future<void> fetchUser() async {
@@ -46,6 +45,6 @@ class UserNotifier extends StateNotifier<UserState> {
     final user = userResult.asValue!.value;
 
     state = state.copyWith(user: user);
-    dump(state);
+    dump('fetched user from firestore : $state)');
   }
 }

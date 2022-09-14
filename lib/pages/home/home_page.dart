@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
     final postList = context.watch<PostList>().postList;
     final user = context.select((UserState value) => value).user;
     final state = context.select((HomeState value) => value);
-    dump(postList);
+    dump(user);
 
     return Scaffold(
       appBar: CustomAppBar(
