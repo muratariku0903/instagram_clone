@@ -62,11 +62,15 @@ class HomeNotifier extends StateNotifier<HomeState> {
 
   Future<void> setImageFromGallery() async {
     dump('Try get image from gallery');
-    final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+    try {
+      final pickedFile =
+          await ImagePicker().pickImage(source: ImageSource.gallery);
 
-    if (pickedFile != null) {
-      state = state.copyWith(postImageFile: File(pickedFile.path));
+      if (pickedFile != null) {
+        state = state.copyWith(postImageFile: File(pickedFile.path));
+      }
+    } catch (e) {
+      dump(e);
     }
   }
 }

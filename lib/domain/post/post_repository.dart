@@ -5,6 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:instagram/domain/post/models/post.dart';
 import 'package:instagram/domain/user/models/user.dart';
 import 'package:instagram/domain/post/error/post_error.dart';
+import 'package:instagram/common/helper/helpers.dart';
 
 class PostRepository {
   final _db = FirebaseFirestore.instance;
@@ -18,10 +19,10 @@ class PostRepository {
 
     try {
       snapshot = await _storage.ref(path).putFile(file);
-      print('Added image to storage.');
+      dump('Added image to storage.');
     } on Exception catch (e) {
-      print('Fail adding image to storage.');
-      print(e);
+      dump('Fail adding image to storage.');
+      dump(e);
       return Result.error(PostError.error);
     }
 
@@ -43,13 +44,13 @@ class PostRepository {
         'postImage': postImage,
         'user': {
           'name': user.name,
-          'uid': user.userId, // userIdじゃね？
+          'userId': user.userId,
           'userImage': user.userImage,
         },
         'createAt': FieldValue.serverTimestamp(),
       });
     } on Exception catch (e) {
-      print(e);
+      dump(e);
     }
   }
 
@@ -69,7 +70,7 @@ class PostRepository {
         'postImage': postImage,
       });
     } on Exception catch (e) {
-      print(e);
+      dump(e);
     }
   }
 
@@ -82,7 +83,7 @@ class PostRepository {
     try {
       await doc.delete();
     } on Exception catch (e) {
-      print(e);
+      dump(e);
     }
   }
 
@@ -94,7 +95,7 @@ class PostRepository {
     try {
       data = await doc.get();
     } on Exception catch (e) {
-      print(e);
+      dump(e);
       return Result.error(PostError.error);
     }
 

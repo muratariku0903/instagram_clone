@@ -4,7 +4,9 @@ import 'package:instagram/pages/home/states/home_state.dart';
 import 'package:instagram/pages/home/home_notifier.dart';
 import 'package:instagram/widgets/text_field/post_text_field.dart';
 import 'package:instagram/widgets/appbar/appbar.dart';
+import 'package:instagram/common/helper/helpers.dart';
 
+// 多分ポストページ自体もwrappedしないとstateの更新を検知できない
 class PostPage extends StatelessWidget {
   const PostPage({
     Key? key,
@@ -19,6 +21,7 @@ class PostPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context, [bool mounted = true]) {
+    dump(state);
     return Scaffold(
       appBar: CustomAppBar(
         title: 'Instagram',
@@ -38,7 +41,7 @@ class PostPage extends StatelessWidget {
                 height: MediaQuery.of(context).size.height / 4,
                 width: MediaQuery.of(context).size.width / 1.2,
                 color: Colors.grey[200],
-                child: (state.postImageFile == null)
+                child: state.postImageFile == null
                     ? const Icon(Icons.image, color: Colors.grey, size: 120.0)
                     : Image.file(state.postImageFile!, fit: BoxFit.cover),
               ),

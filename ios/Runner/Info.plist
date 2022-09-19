@@ -47,8 +47,8 @@
         <true />
         <key>NSCameraUsageDescription</key>
         <string>Access to take a photo by camera</string>
-        <key>NSAppleMusicUsageDescription</key>
-        <string>Access to pick a photo</string>
+        <key>NSMicrophoneUsageDescription</key>
+        <string>This app requires to add file to your photo library your microphone</string>
         <key>NSPhotoLibraryUsageDescription</key>
         <string>Access to pick a photo</string>
     </dict>
