@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:instagram/di_container.dart';
-import 'package:instagram/domain/user/models/user.dart';
-import 'package:instagram/pages/app/app_notifier.dart';
-import 'package:instagram/pages/app/user_notifier.dart';
-import 'package:instagram/pages/app/states/user_state.dart';
-import 'package:instagram/pages/signin/signin_page.dart';
-import 'package:instagram/pages/home/home_page.dart';
+
+import 'di_container.dart';
+import 'domain/user/models/user.dart';
+import 'pages/app/app_notifier.dart';
+import 'pages/app/states/user_state.dart';
+import 'pages/app/user_notifier.dart';
+import 'pages/home/home_page.dart';
+import 'pages/signin/signin_page.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
